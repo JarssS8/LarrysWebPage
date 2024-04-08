@@ -1,0 +1,27 @@
+---
+import Card from './Card.astro'
+import { CARS_URL } from '../consts.ts'
+
+const cars = await fetch(CARS_URL).then(res => res.json())
+---
+
+<div class="cars-on-sale">
+    {cars.map(car => (
+        <Card car={car} />
+    ))}
+
+</div>
+
+<style>
+    .cars-on-sale {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 3rem;
+}
+
+.cars-on-sale .card {
+    flex: 0 0 33.33%;
+    max-width: 33.33%;
+}
+</style>
